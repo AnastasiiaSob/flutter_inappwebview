@@ -1,4 +1,4 @@
-# flutter_inappwebview
+# Web View for Flutter
 
 A new Flutter project.
 

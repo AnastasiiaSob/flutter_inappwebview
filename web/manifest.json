@@ -1,6 +1,6 @@
 {
-    "name": "flutter_inappwebview",
-    "short_name": "flutter_inappwebview",
+    "name": "webview_for_flutter",
+    "short_name": "webview_for_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
