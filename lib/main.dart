@@ -35,6 +35,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late InAppWebViewController webViewController;
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -45,13 +47,46 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: SafeArea(
-          child: Stack(
-        children: [
-          InAppWebView(
-            initialUrlRequest: URLRequest(url: Uri.parse("https://zuckerjagdwurst.com")),
-          ),
-        ],
-      )),
+        child: Column(
+          children: [
+            Expanded(
+              child: Stack(
+                children: [
+                  InAppWebView(
+                    initialUrlRequest: URLRequest(url: Uri.parse("https://zuckerjagdwurst.com")),
+                    onWebViewCreated: (controller) {
+                      webViewController = controller;
+                    },
+                  ),
+                ],
+              ),
+            ),
+            ButtonBar(
+              alignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    webViewController.goBack();
+                  },
+                  child: const Icon(Icons.arrow_back_ios),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    webViewController.goForward();
+                  },
+                  child: const Icon(Icons.arrow_forward_ios),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    webViewController.reload();
+                  },
+                  child: const Icon(Icons.refresh),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
